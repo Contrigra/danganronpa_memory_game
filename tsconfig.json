@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "target": "es2022",
+    "strict": true,
+    "skipLibCheck": true,
+    "allowImportingTsExtensions": true,
+    "module": "esnext",
+    "noEmit": true,
+    "moduleDetection": "force",
+    "isolatedModules": true,
+  "types": ["vite/client"]
+
+  },
+  "include": ["src"]
+}
