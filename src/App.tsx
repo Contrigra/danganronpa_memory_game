@@ -1,21 +1,32 @@
 import './styles/App.css'
 import './styles/normalize.css'
-import {JSX, useRef} from 'react'
+
+import {JSX, useEffect, useState} from 'react'
 
 import Header from "./components/Header.tsx";
 import Playfield from "./components/Playfield.tsx";
 import Footer from "./components/Footer.tsx";
 
-// Он заблочит тред вообще, если не поместить в асинк функцию?
-const cardsheet: Response = await fetch("https://www.spriters-resource.com/media/assets/89/91649.png?updated=1755475662")
-let cardsheetBlob: Blob = await cardsheet.blob()
-cardsheetBlob = useRef<Blob>(cardsheetBlob)
+function App(): JSX.Element {
+    const [spriteBlobURL, setSpriteBlobURL] = useState<string | null>(null)
 
-function App() {
+    // obtaining spritesheet
+    useEffect((): void => {
+        (async () => {
+            let spriteBlobURL: string = await fetchSpritesheet()
+            setSpriteBlobURL(spriteBlobURL)
+        })()
+    }, [])
+
+
+    useEffect((): void => {
+        console.log(spriteBlobURL)
+    }, [spriteBlobURL])
+
     return (
         <>
-            <Header title={'Hehe'}></Header>
-            <Playfield cardsheet={"cardsheet"}></Playfield>
+            <Header title={'Danganronpa Memory Game'}></Header>
+            {spriteBlobURL !== null && <Playfield spritesheetURL={spriteBlobURL}/>}
             <Footer></Footer>
         </>
     )
@@ -23,3 +34,19 @@ function App() {
 
 
 export default App
+
+
+async function fetchSpritesheet(): Promise<string> {
+
+    // TODO remove comments for a real fetch request. Made a local temporary fetch call to remove the delay
+    // const spritesheetResponse: Response = await fetch("https://raw.githubusercontent.com/Contrigra/danganronpa_memory_game/refs/heads/main/src/assets/spritesheet.png")
+    const spritesheetResponse: Response = await fetch("http://localhost:5173/src/assets/spritesheet.png")
+    if (!spritesheetResponse.ok) {
+        throw new Error(`Fetching failed. Status: ${spritesheetResponse.status}`)
+    }
+    const spritesheetBlob: Blob = await spritesheetResponse.blob()
+    return URL.createObjectURL(spritesheetBlob)
+}
+
+
+
