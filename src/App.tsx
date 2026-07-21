@@ -1,11 +1,13 @@
 import './styles/App.css'
 import './styles/normalize.css'
-
 import {JSX, useEffect, useState} from 'react'
 
 import Header from "./components/Header.tsx";
 import Playfield from "./components/Playfield.tsx";
 import Footer from "./components/Footer.tsx";
+
+export default App
+
 
 function App(): JSX.Element {
     const [spriteBlobURL, setSpriteBlobURL] = useState<string | null>(null)
@@ -32,8 +34,6 @@ function App(): JSX.Element {
     )
 }
 
-
-export default App
 
 
 async function fetchSpritesheet(): Promise<string> {
