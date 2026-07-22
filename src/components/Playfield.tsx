@@ -2,7 +2,7 @@ import {JSX} from "react";
 
 // null for initial loading state to avoid flickering layout, could be done better to avoid passing null falsely when not needed
 interface PlayfieldProps {
-    spritesheetURL: string
+    spritesheetURL: string | null
 }
 
 interface CardProps {
