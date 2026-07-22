@@ -28,7 +28,7 @@ function App(): JSX.Element {
     return (
         <>
             <Header title={'Danganronpa Memory Game'}></Header>
-            {spriteBlobURL !== null && <Playfield spritesheetURL={spriteBlobURL}/>}
+            {<Playfield spritesheetURL={spriteBlobURL}/>}
             <Footer></Footer>
         </>
     )
