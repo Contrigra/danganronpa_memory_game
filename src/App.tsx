@@ -8,7 +8,6 @@ import Footer from "./components/Footer.tsx";
 
 export default App
 
-// TODO playfield card randomization
 function App(): JSX.Element {
     const [spriteBlobURL, setSpriteBlobURL] = useState<string | null>(null)
 
@@ -28,12 +27,12 @@ function App(): JSX.Element {
     return (
         <>
             <Header title={'Danganronpa Memory Game'}></Header>
-            {spriteBlobURL !== null && <Playfield spritesheetURL={spriteBlobURL}/>}
+            {spriteBlobURL !== null ? (<Playfield spritesheetURL={spriteBlobURL}/>) : (
+                <Playfield spritesheetURL={'Image placeholder'}/>)}
             <Footer></Footer>
         </>
     )
 }
-
 
 
 async function fetchSpritesheet(): Promise<string> {
