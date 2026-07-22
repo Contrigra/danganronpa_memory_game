@@ -8,7 +8,7 @@ import Footer from "./components/Footer.tsx";
 
 export default App
 
-
+// TODO playfield card randomization
 function App(): JSX.Element {
     const [spriteBlobURL, setSpriteBlobURL] = useState<string | null>(null)
 

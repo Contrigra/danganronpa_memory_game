@@ -12,7 +12,7 @@ interface CardProps {
 
 
 export default function Playfield({spritesheetURL}: PlayfieldProps): JSX.Element {
-    // TODO Playfield
+    //  TODO randomize cardArray item indexes
     let cardArray: Array<JSX.Element> = [];
 
     for (let currentCard = 0; currentCard < 15; currentCard++) {
@@ -20,7 +20,6 @@ export default function Playfield({spritesheetURL}: PlayfieldProps): JSX.Element
                              spritesheet={`${spritesheetURL}`}
                              cardNumber={currentCard}
                              coordinates={{x: 470, y: 690}}>
-
         </Card>)
     }
 
@@ -30,26 +29,20 @@ export default function Playfield({spritesheetURL}: PlayfieldProps): JSX.Element
 }
 
 function Card({spritesheet, cardNumber, coordinates}: CardProps): JSX.Element {
-    // TODO Gamecard
-    // TODO proper sprite positioning feature
-
-
-    let cardPosition: {x:number, y:number}  = {x: -16, y:-20}
-
+    let cardPosition: { x: number, y: number } = {x: -16, y: -20}
     let currentColumn = (cardNumber) % 4
-    let currentRow= Math.floor((cardNumber) / 4)
-
+    let currentRow = Math.floor((cardNumber) / 4)
     let xOffset: number = currentColumn * -254
     let yOffset = currentRow * -360
-
-
 
     let newCard = <div className={`gamecard gamecard-${cardNumber}`}>
         <img src={`${spritesheet}`}
              alt=""
-             style={{objectFit: 'none', objectPosition: `${cardPosition.x + xOffset}px ${cardPosition.y + yOffset}px` }}/>
+             style={{
+                 objectFit: 'none',
+                 objectPosition: `${cardPosition.x + xOffset}px ${cardPosition.y + yOffset}px`
+             }}/>
     </div>
-
 
 
     return newCard
