@@ -1,6 +1,6 @@
 import './styles/App.css'
 import './styles/normalize.css'
-import {JSX, useEffect, useState} from 'react'
+import {JSX, useEffect, useState, createContext, Context} from 'react'
 
 import Header from "./components/Header.tsx";
 import Playfield from "./components/Playfield.tsx";
@@ -8,8 +8,16 @@ import Footer from "./components/Footer.tsx";
 
 export default App
 
+export const CurrentScoreContext: Context<number> = createContext(0)
+export const HighScoreContext: Context<number> = createContext(0);
+export const ClickedArrayContext: Context<[]> = createContext([]);
+
+
 function App(): JSX.Element {
     const [spriteBlobURL, setSpriteBlobURL] = useState<string | null>(null)
+    const [currentScore, setCurrentScore] = useState(0)
+    const [highScore, setHighScore] = useState(0)
+    const [clickedArray, setClickedArray] = useState([])
 
     // obtaining spritesheet
     useEffect((): void => {
@@ -26,9 +34,14 @@ function App(): JSX.Element {
 
     return (
         <>
-            <Header title={'Danganronpa Memory Game'}></Header>
-            {spriteBlobURL !== null ? (<Playfield spritesheetURL={spriteBlobURL}/>) : (
-                <Playfield spritesheetURL={'Image placeholder'}/>)}
+            <Header currentScore={currentScore} highScore={highScore}></Header>
+            <CurrentScoreContext value={{currentScore, setCurrentScore}}>
+                <HighScoreContext value={{highScore, setHighScore}}>
+                    <ClickedArrayContext value={{clickedArray, setClickedArray}}>
+                        <Playfield spritesheetURL={spriteBlobURL}/>
+                    </ClickedArrayContext>
+                </HighScoreContext>
+            </CurrentScoreContext>
             <Footer></Footer>
         </>
     )
