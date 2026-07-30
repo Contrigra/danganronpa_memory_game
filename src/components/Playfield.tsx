@@ -12,18 +12,13 @@ interface CardProps {
     handleClickCheckSuccess: (e: React.MouseEvent<HTMLDivElement>) => void,
 }
 
-export type ScoreContext = {
-    highScore: number;
-    setHighScore: React.Dispatch<React.SetStateAction<number>>
-}
-
 
 export default function Playfield({spritesheetURL}: PlayfieldProps): JSX.Element {
     let cardArray: Array<JSX.Element> = [];
 
-    const {highScore, setHighScore} = useContext(HighScoreContext);
-    const {currentScore, setCurrentScore} = useContext(CurrentScoreContext);
-    const {clickedArray, setClickedArray} = useContext(ClickedArrayContext);
+    const [highScore, setHighScore] = useContext(HighScoreContext);
+    const [currentScore, setCurrentScore] = useContext(CurrentScoreContext);
+    const [clickedArray, setClickedArray] = useContext(ClickedArrayContext);
 
 
     function handleClickSuccess(e: React.MouseEvent<HTMLDivElement>) {
