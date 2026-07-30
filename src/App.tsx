@@ -59,7 +59,7 @@ function App(): JSX.Element {
 async function fetchSpritesheet(): Promise<string> {
 
     // emulating a fetch request
-    const spritesheetResponse: Response = await fetch("https://raw.githubusercontent.com/Contrigra/danganronpa_memory_game/refs/heads/main/src/assets/spritesheet.png")
+    const spritesheetResponse: Response = await fetch("https://raw.githubusercontent.com/Contrigra/danganronpa_memory_game/refs/heads/main/dist/spritesheet.png")
     if (!spritesheetResponse.ok) {
         throw new Error(`Fetching failed. Status: ${spritesheetResponse.status}`)
     }
