@@ -58,9 +58,8 @@ function App(): JSX.Element {
 
 async function fetchSpritesheet(): Promise<string> {
 
-    // TODO remove comments for a real fetch request. Made a local temporary fetch call to remove the delay
-    // const spritesheetResponse: Response = await fetch("https://raw.githubusercontent.com/Contrigra/danganronpa_memory_game/refs/heads/main/src/assets/spritesheet.png")
-    const spritesheetResponse: Response = await fetch("http://localhost:5173/src/assets/spritesheet.png")
+    // emulating a fetch request
+    const spritesheetResponse: Response = await fetch("https://raw.githubusercontent.com/Contrigra/danganronpa_memory_game/refs/heads/main/src/assets/spritesheet.png")
     if (!spritesheetResponse.ok) {
         throw new Error(`Fetching failed. Status: ${spritesheetResponse.status}`)
     }
